@@ -11,14 +11,21 @@ plugins {
 // Preset for release plugin for manual build & testing. \n
 // e.g. to test on custom branch 'feature/foo' and new version '0.0.0.1-SNAPSHOT', \n
 // need to run "gradle release -Prelease.git.requireBranch=feature/foo -Prelease.newVersion=0.0.0.1-SNAPSHOT"
-if(project.hasProperty('release.releaseVersion') && project.release.releaseVersion) {
-    println "project.release.releaseVersion ${project.release.releaseVersion}"
-    println "project.getProperty('release.releaseVersion') ${project.getProperty('release.releaseVersion')}"
-    release.releaseVersion = project.getProperty('release.releaseVersion')
+
+// release branch pattern should be always preset
+def propReleaseGitRequireBranch = project.property('release.git.requireBranch')
+if (propReleaseGitRequireBranch) {
+    release.git.requireBranch = propReleaseGitRequireBranch
 }
 
-if(project.hasProperty('release.newVersion') && project.release.newVersion) {
-    release.newVersion = project.getProperty('release.newVersion')
+// do not set each of releaseVersion and newVersion unless non-empty value provided
+def propReleaseReleaseVersion = project.property('release.releaseVersion')
+if (propReleaseReleaseVersion?.trim()) {
+    release.releaseVersion = propReleaseReleaseVersion
+}
+def propReleaseNewVersion = project.property('release.newVersion')
+if (propReleaseNewVersion?.trim()) {
+    release.newVersion = propReleaseNewVersion
 }
 
 // Lifecycle tasks - BEGIN
