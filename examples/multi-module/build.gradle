@@ -8,9 +8,9 @@ plugins {
     id 'net.researchgate.release' version '2.8.1'
 }
 
-if(project.hasProperty('release.git.requireBranch')) {
-    release.git.requireBranch = project.findProperty('release.git.requireBranch')
-}
+//if(project.hasProperty('release.git.requireBranch')) {
+//    release.git.requireBranch = project.findProperty('release.git.requireBranch')
+//}
 
 // Lifecycle tasks - BEGIN
 
