@@ -6,6 +6,7 @@ plugins {
     id 'com.google.cloud.tools.jib' version '3.2.1' apply false
     id 'maven-publish'
     id 'net.researchgate.release' version '2.8.1' // latest version where parameters can be overridden
+//    id 'net.researchgate.release' version '3.0.1'
 }
 
 // Preset for release plugin for manual build & testing. \n
@@ -19,14 +20,14 @@ if (propReleaseGitRequireBranch) {
 }
 
 // do not set each of releaseVersion and newVersion unless non-empty value provided
-def propReleaseReleaseVersion = project.property('release.releaseVersion')
-if (propReleaseReleaseVersion?.trim()) {
-    release.releaseVersion = propReleaseReleaseVersion
-}
-def propReleaseNewVersion = project.property('release.newVersion')
-if (propReleaseNewVersion?.trim()) {
-    release.newVersion = propReleaseNewVersion
-}
+//def propReleaseReleaseVersion = project.property('release.releaseVersion')
+//if (propReleaseReleaseVersion?.trim()) {
+//    release.releaseVersion = propReleaseReleaseVersion
+//}
+//def propReleaseNewVersion = project.property('release.newVersion')
+//if (propReleaseNewVersion?.trim()) {
+//    release.newVersion = propReleaseNewVersion
+//}
 
 // Lifecycle tasks - BEGIN
 
