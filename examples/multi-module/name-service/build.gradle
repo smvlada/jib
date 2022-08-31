@@ -26,10 +26,10 @@ ext {
 jib {
   to {
     image "ghcr.io/${project.findProperty('GITHUB_USER')}/${project.name}:${version}"
-    tags=['latest']
     auth {
       username project.findProperty('GITHUB_USER')
       password project.findProperty('GITHUB_TOKEN')
     }
+//    println project.properties
   }
 }

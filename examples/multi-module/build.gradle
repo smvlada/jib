@@ -5,15 +5,18 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.6.RELEASE' apply false
     id 'com.google.cloud.tools.jib' version '3.2.1' apply false
     id 'maven-publish'
-    id 'net.researchgate.release' version '2.8.1' // latest adequate version
+    id 'net.researchgate.release' version '2.8.1' // latest version where parameters can be overridden
 }
 
 // Preset for release plugin for manual build & testing. \n
 // e.g. to test on custom branch 'feature/foo' and new version '0.0.0.1-SNAPSHOT', \n
 // need to run "gradle release -Prelease.git.requireBranch=feature/foo -Prelease.newVersion=0.0.0.1-SNAPSHOT"
-if(project.hasProperty('release.git.requireBranch') && project.release.git.requireBranch) {
-    release.git.requireBranch = project.release.git.requireBranch
+if(project.hasProperty('release.releaseVersion') && project.release.releaseVersion) {
+    println "project.release.releaseVersion ${project.release.releaseVersion}"
+    println "project.getProperty('release.releaseVersion') ${project.getProperty('release.releaseVersion')}"
+    release.releaseVersion = project.getProperty('release.releaseVersion')
 }
+
 if(project.hasProperty('release.newVersion') && project.release.newVersion) {
     release.newVersion = project.getProperty('release.newVersion')
 }
