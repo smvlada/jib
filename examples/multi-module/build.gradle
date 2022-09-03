@@ -19,16 +19,6 @@ if (propReleaseGitRequireBranch) {
     release.git.requireBranch = propReleaseGitRequireBranch
 }
 
-// do not set each of releaseVersion and newVersion unless non-empty value provided
-//def propReleaseReleaseVersion = project.property('release.releaseVersion')
-//if (propReleaseReleaseVersion?.trim()) {
-//    release.releaseVersion = propReleaseReleaseVersion
-//}
-//def propReleaseNewVersion = project.property('release.newVersion')
-//if (propReleaseNewVersion?.trim()) {
-//    release.newVersion = propReleaseNewVersion
-//}
-
 // Lifecycle tasks - BEGIN
 
 // Task to do mavenPublish for all modules where useMavenPublish exists.
@@ -56,5 +46,3 @@ task publishJibImages {
 // Chains tasks as: build -> publishMavenArtifacts -> publishJibImages -> "create tag & update version"
 afterReleaseBuild.dependsOn publishJibImages
 publishJibImages.dependsOn publishMavenArtifacts
-
-// Lifecycle tasks - END

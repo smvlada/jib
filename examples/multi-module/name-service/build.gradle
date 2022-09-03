@@ -25,11 +25,10 @@ ext {
 
 jib {
   to {
-    image "ghcr.io/${project.findProperty('GITHUB_USER')}/${project.name}:${version}"
+    image "ghcr.io/${GITHUB_ACTOR}/${project.name}:${version}"
     auth {
-      username project.findProperty('GITHUB_USER')
-      password project.findProperty('GITHUB_TOKEN')
+      username GITHUB_ACTOR
+      password GITHUB_TOKEN
     }
-//    println project.properties
   }
 }
